@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word and character counter</title>
+    <!-- CSS -->
+    <style>
+        body{
+            padding: 50px 100px;
+        }
+        h1{
+            text-align: center;
+            background-color: #0067B0;
+            color: white;
+            padding: 10px;
+            margin: 0px;
+        }
+        #textbox{
+            width: 99.13%;
+            border-color: #0067B0 ;
+         }
+
+         p{
+            text-align: center;
+            background-color: #0067B0;
+            padding: 15px;
+            margin: 0px;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+         }
+    </style>
+</head>
+<body>
+
+    <!-- HTML -->
+    <h1>Word and character counter</h1>
+    <textarea  id="textbox" cols="30" rows="10"></textarea>
+    <p>
+        <span id="word">0</span> words and 
+        <span id="char">0</span> characters
+    </p>
+    
+
+
+    <!-- javascript -->
+    <script>
+        let textbox= document.getElementById("textbox");
+
+        textbox.addEventListener('input', function(){
+            var text=this.value;
+
+            //character counter
+            let char=text.length;
+            // document.getElementById("char").innerHTML=char;
+            let x= document.getElementById("char");
+            x.innerHTML=char;
+
+           
+             //word counter
+            text=text.trim(); //starting and end se extra spaces remove kr dega
+            //abhi bhi beech ,me extra space  aaega to ek  nya word ban jaaega 
+            
+            // split function pahle given argument k according 
+            //todta h fir use ek array me store kar letaa h
+             //jaise hi text me ek space milega whi se array ka ek naya element ban jaaega
+           //words me ek array store hoga jisme har word ek element hoga 
+           //space aate hi ek naya element ban jaaega 
+            let words = text.split(" ");
+
+            // now we have to remove extra spaces from middle if it occurs
+            //filter me words ka ek ek element pass hoga 
+            //agar wo element blank nhi h to cleanList me save ho jaaega
+            let cleanList=words.filter(function(elm){
+                return elm !="";
+            });
+            document.getElementById("word").innerHTML= cleanList.length;
+           
+        //    console.log(cleanList);
+       //    document.getElementById("word").innerHTML= words.length;//since words is an array
+       })
+    </script>
+</body>
+</html>
